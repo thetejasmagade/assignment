@@ -11,8 +11,18 @@ let userdata = reactive({
     address: ``,
 })
 
+let isDataSaved = ref(false)
+
 function saveData() {
-    store.commit('pushData', userdata);
+    if (userdata.name && userdata.phone && userdata.email && userdata.address) {
+        store.commit('pushData', userdata);
+
+        isDataSaved.value = true;
+        setTimeout(() => {
+            isDataSaved.value = false;
+        }, 3000)
+    }
+
 }
 </script>
 
@@ -38,6 +48,10 @@ function saveData() {
             <button @click="saveData()" type="submit" class="btn btn-success submit-btn">Submit Information</button>
             <button type="reset" class="btn btn-danger px-3">Clear Form</button>
         </form>
+    </div>
+
+    <div class="alert alert-success mt-4" role="alert" v-if="isDataSaved">
+        Data Saved Successfully - <b><router-link to="/results">View Results</router-link></b>
     </div>
 </template>
 
