@@ -13,7 +13,7 @@ let userdata = reactive({
 
 let isDataSaved = ref(false)
 
-function saveData() {
+const saveData = () => {
     if (userdata.name && userdata.phone && userdata.email && userdata.address) {
         store.commit('pushData', userdata);
 
