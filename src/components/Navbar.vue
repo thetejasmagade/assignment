@@ -14,6 +14,9 @@
                     <li class="nav-item">
                         <router-link to="/" class="nav-link">Home</router-link>
                     </li>
+                    <li class="nav-item">
+                        <router-link to="/results" class="nav-link">Results</router-link>
+                    </li>
                 </ul>
             </div>
         </div>

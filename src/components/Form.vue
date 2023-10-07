@@ -1,5 +1,8 @@
 <script setup>
-import { reactive } from 'vue';
+import { reactive, ref } from 'vue';
+import { useStore } from 'vuex'
+
+const store = useStore()
 
 let userdata = reactive({
     name: '',
@@ -8,10 +11,13 @@ let userdata = reactive({
     address: ``,
 })
 
+function saveData() {
+    store.commit('pushData', userdata);
+}
 </script>
 
 <template>
-    <div>
+    <div class="">
         <form class="container" @submit.prevent="onSubmit">
             <div class="mb-3">
                 <label for="fullName" class="form-label">Full Name</label>
@@ -29,8 +35,7 @@ let userdata = reactive({
                 <label for="address" class="form-label">Address</label>
                 <textarea v-model="userdata.address" class="form-control" id="address" rows="5"></textarea>
             </div>
-            <button @click="$store.commit('pushData', userdata)" type="submit" class="btn btn-success submit-btn">Submit
-                Information</button>
+            <button @click="saveData()" type="submit" class="btn btn-success submit-btn">Submit Information</button>
             <button type="reset" class="btn btn-danger px-3">Clear Form</button>
         </form>
     </div>
